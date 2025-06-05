@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------- extra styles ---------- */
+html, body {
+  @apply h-full font-sans;
+}
+#root {
+  @apply h-full;
+}
+
+/* chat-bubble из uiverse.io, но перекрашиваем */
+.chat-bubble {
+  @apply rounded-2xl px-4 py-2 max-w-sm break-words shadow;
+}
+
+/* AI-bubble: в светлой теме свето-серый, в тёмной — тёмно-серый */
+.chat-bubble.ai {
+  @apply bg-gray-200 text-gray-900 self-start;
+}
+.dark .chat-bubble.ai {
+  @apply bg-gray-700 text-gray-100 self-start;
+}
+
+/* User-bubble: в светлой теме чуть более тёмный серый, в тёмной — средний серый */
+.chat-bubble.user {
+  @apply bg-gray-300 text-gray-900 self-end;
+}
+.dark .chat-bubble.user {
+  @apply bg-gray-600 text-white self-end;
+}
