@@ -1,4 +1,4 @@
-// File: frontend/src/components/Admin/LessonEditor.tsx
+// frontend/src/components/Admin/LessonEditor.tsx
 
 import React, { useState, useEffect } from 'react';
 import { api } from '../../services/api';
@@ -25,7 +25,6 @@ interface Props {
 const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
   const isNew = !lesson._id;
 
-  // Хуки — сразу после импорта
   const [title, setTitle] = useState<string>(lesson.title || '');
   const [content, setContent] = useState<string>(lesson.content || '');
   const [order, setOrder] = useState<number>(lesson.order || 1);
@@ -38,7 +37,6 @@ const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
   const [saving, setSaving] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
-  // При смене props.lesson синхронизируем стейт
   useEffect(() => {
     setTitle(lesson.title || '');
     setContent(lesson.content || '');
@@ -51,7 +49,6 @@ const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
     setError('');
     setSaving(true);
     try {
-      // Убираем пустые строки
       const fq = questions.filter(q => q.trim());
       const crit = criteria
         .filter(c => c.name.trim())
@@ -80,10 +77,7 @@ const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
 
   return (
     <div className="p-4 bg-white dark:bg-panel rounded shadow space-y-4">
-      <h3 className="text-xl font-bold">
-        {isNew ? 'New Lesson' : 'Edit Lesson'}
-      </h3>
-
+      <h3 className="text-xl font-bold">{isNew ? 'New Lesson' : 'Edit Lesson'}</h3>
       {error && <div className="text-red-600">{error}</div>}
 
       <div>
@@ -194,7 +188,7 @@ const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
         </button>
       </div>
     </div>
-  );
-};
+);
 
 export default LessonEditor;
+
