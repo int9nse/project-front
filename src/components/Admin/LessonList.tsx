@@ -1,3 +1,5 @@
+// frontend/src/components/Admin/LessonList.tsx
+
 import React, { useState, useEffect } from 'react';
 import LessonEditor from './LessonEditor';
 import { api } from '../../services/api';
@@ -61,36 +63,44 @@ const LessonList: React.FC = () => {
             + New lesson
           </button>
 
-          {lessons.map((l) => (
+          {lessons.map(l => (
             <div
               key={l._id}
-              className="flex justify-between items-center p-3 rounded border bg-white dark:bg-panel dark:border-line"
+              className="flex flex-col p-3 rounded border bg-white dark:bg-panel dark:border-line"
             >
-              <span>
-                {l.order}. {l.title}
-              </span>
-              <div className="space-x-3">
-                <button
-                  className="text-blue-500 hover:underline"
-                  onClick={() => setEditing(l)}
-                >
-                  Edit
-                </button>
-                {l._id && (
+              <div className="flex justify-between items-center mb-1">
+                <span className="font-medium">
+                  {l.order}. {l.title}
+                </span>
+                <div className="space-x-3">
                   <button
-                    className="text-red-500 hover:underline"
-                    onClick={() => remove(l._id!)}
+                    className="text-blue-500 hover:underline"
+                    onClick={() => setEditing(l)}
                   >
-                    Delete
+                    Edit
                   </button>
-                )}
+                  {l._id && (
+                    <button
+                      className="text-red-500 hover:underline"
+                      onClick={() => remove(l._id!)}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
               </div>
+              <p className="text-gray-700 dark:text-gray-300 text-sm">
+                {l.content
+                  ? l.content.length > 100
+                    ? l.content.slice(0, 100) + '…'
+                    : l.content
+                  : '— нет текста урока —'}
+              </p>
             </div>
           ))}
         </>
       )}
     </div>
-  );
-};
+);
 
 export default LessonList;
