@@ -101,6 +101,7 @@ const LessonList: React.FC = () => {
         </>
       )}
     </div>
-);
+  );
+};  // ← вот эта закрывающая скобка и точка с запятой были пропущены
 
 export default LessonList;
