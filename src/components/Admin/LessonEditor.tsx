@@ -188,7 +188,8 @@ const LessonEditor: React.FC<Props> = ({ lesson, onDone }) => {
         </button>
       </div>
     </div>
-);
+  );
+}; // ← Добавлена эта фигурная скобка
 
 export default LessonEditor;
 
